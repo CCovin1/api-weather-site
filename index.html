@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Dashboard</title>
+  <style>
+    /* Add your preferred CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Weather Dashboard</h1>
+  
+  <form id="search-form">
+    <input type="text" id="city-input" placeholder="Enter a city">
+    <button type="submit">Search</button>
+  </form>
+  
+  <div id="search-history">
+    <h2>Search History</h2>
+    <ul id="history-list"></ul>
+  </div>
+  
+  <div id="current-weather">
+    <h2>Current Weather</h2>
+    <div id="current-weather-details"></div>
+  </div>
+  
+  <div id="future-weather">
+    <h2>5-Day Forecast</h2>
+    <div id="forecast-details"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const apiKey = '5738d2e0fe8424d7a95a018fc8953eb0';
+  </script>
+</body>
+</html>
