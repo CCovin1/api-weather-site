@@ -72,27 +72,30 @@ function updateCurrentWeather(currentData) {
 
 // Function to update the forecast details in the UI
 function updateForecast(forecastData) {
+  // Clear existing forecast details
+  forecastDetails.innerHTML = '';
+
   // Extract the required data from forecastData object
   const forecast = forecastData.slice(1, 6); // Get the forecast for the next 5 days
 
-  // Create HTML markup for forecast details
-  let markup = '';
+  // Create forecast cards
   forecast.forEach(day => {
     const { dt, temp, humidity, wind_speed } = day;
-    const date = new Date(dt * 1000).toLocaleDateString('en-US', { weekday: 'long' });
+    const date = new Date(dt * 1000).toLocaleDateString('en-US');
 
-    markup += `
-      <div class="forecast-day">
-        <p>Date: ${date}</p>
-        <p>Temperature: ${temp.day}°C</p>
-        <p>Humidity: ${humidity}%</p>
-        <p>Wind Speed: ${wind_speed} m/s</p>
-      </div>
+    const card = document.createElement('div');
+    card.classList.add('forecast-card');
+
+    const markup = `
+      <h3>${date}</h3>
+      <p>Temperature: ${temp.day}°C</p>
+      <p>Humidity: ${humidity}%</p>
+      <p>Wind Speed: ${wind_speed} m/s</p>
     `;
-  });
 
-  // Update the UI with forecast details
-  forecastDetails.innerHTML = markup;
+    card.innerHTML = markup;
+    forecastDetails.appendChild(card);
+  });
 }
 
 // Function to add the searched city to the search history
