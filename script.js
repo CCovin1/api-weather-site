@@ -28,9 +28,9 @@ form.addEventListener('submit', function(event) {
   }
 });
 
-// Function to fetch coordinates for the given city from an API
-function getCoordinates(city) {
-  const apiUrl = `https://api.openweathermap.org/geo/3.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+// Function to fetch coordinates for the given city, state code, and country code from the OpenWeatherMap Geocoding API
+function getCoordinates(city, stateCode = '', countryCode = '') {
+  const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}`;
 
   return fetch(apiUrl)
     .then(response => response.json())
@@ -46,7 +46,7 @@ function getCoordinates(city) {
 
 // Function to fetch weather data from the OpenWeatherMap API
 function getWeather(lat, lon) {
-  const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   return fetch(apiUrl)
     .then(response => response.json());
