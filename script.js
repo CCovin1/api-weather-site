@@ -61,9 +61,9 @@ function updateCurrentWeather(currentData) {
   const markup = `
     <h3>${cityInput.value}</h3>
     <p>Date: ${getCurrentDate()}</p>
-    <p>Temperature: ${temp}°C</p>
+    <p>Temperature: ${temp}°F</p>
     <p>Humidity: ${humidity}%</p>
-    <p>Wind Speed: ${wind_speed} m/s</p>
+    <p>Wind Speed: ${wind_speed} MPH</p>
   `;
 
   // Update the UI with current weather details
@@ -90,7 +90,7 @@ function updateForecast(forecastData) {
       <h3>${date}</h3>
       <p>Temperature: ${temp.day}°F</p>
       <p>Humidity: ${humidity}%</p>
-      <p>Wind Speed: ${wind_speed} mph</p>
+      <p>Wind Speed: ${wind_speed} MPH</p>
     `;
 
     card.innerHTML = markup;
