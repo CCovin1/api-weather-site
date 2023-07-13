@@ -30,7 +30,7 @@ form.addEventListener('submit', function(event) {
 
 // Function to fetch coordinates for the given city, state code, and country code from the OpenWeatherMap Geocoding API
 function getCoordinates(city, stateCode = '', countryCode = '') {
-  const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}`;
+  const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}&units=imperial`;
 
   return fetch(apiUrl)
     .then(response => response.json())
@@ -46,7 +46,7 @@ function getCoordinates(city, stateCode = '', countryCode = '') {
 
 // Function to fetch weather data from the OpenWeatherMap API
 function getWeather(lat, lon) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
 
   return fetch(apiUrl)
     .then(response => response.json());
@@ -88,9 +88,9 @@ function updateForecast(forecastData) {
 
     const markup = `
       <h3>${date}</h3>
-      <p>Temperature: ${temp.day}°C</p>
+      <p>Temperature: ${temp.day}°F</p>
       <p>Humidity: ${humidity}%</p>
-      <p>Wind Speed: ${wind_speed} m/s</p>
+      <p>Wind Speed: ${wind_speed} mph</p>
     `;
 
     card.innerHTML = markup;
