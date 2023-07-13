@@ -1,7 +1,10 @@
 
 # Weather Dashboard
 The Weather Dashboard is a web application that allows users to search for weather information for different cities. It displays the current weather details and a 5-day forecast for the selected city.
+
+https://ccovin1.github.io/api-weather-site/
 ## ![alt.text](./sc.png)
+
 
 ## Features
 Search for weather by city: Users can enter a city name in the search input field and click the "Search" button to retrieve weather information.
