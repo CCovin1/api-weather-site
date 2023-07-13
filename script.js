@@ -37,7 +37,7 @@ function searchCity(city) {
 
 // Function to fetch coordinates for the given city, state code, and country code from the OpenWeatherMap Geocoding API
 function getCoordinates(city, stateCode = '', countryCode = '') {
-  const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}&units=imperial`;
+  const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}&units=imperial`;
 
   return fetch(apiUrl)
     .then(response => response.json())
