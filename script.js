@@ -1,9 +1,12 @@
+// Weather Dashboard JavaScript code
+
 const form = document.getElementById('search-form');
 const cityInput = document.getElementById('city-input');
 const historyList = document.getElementById('history-list');
 const currentWeatherDetails = document.getElementById('current-weather-details');
 const forecastDetails = document.getElementById('forecast-details');
 const apiKey = '5738d2e0fe8424d7a95a018fc8953eb0';
+const searchedCities = [];
 
 // Event listener for form submission
 form.addEventListener('submit', function(event) {
@@ -12,21 +15,25 @@ form.addEventListener('submit', function(event) {
   const city = cityInput.value.trim(); // Get the entered city
 
   if (city !== '') {
-    getCoordinates(city)
-      .then(coordinates => getWeather(coordinates.lat, coordinates.lon))
-      .then(data => {
-        // Process the weather data and update the UI
-        updateCurrentWeather(data.current);
-        updateForecast(data.daily);
-        addCityToHistory(city);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-
+    searchCity(city);
     cityInput.value = ''; // Clear the input field
   }
 });
+
+// Function to search for a city and display weather information
+function searchCity(city) {
+  getCoordinates(city)
+    .then(coordinates => getWeather(coordinates.lat, coordinates.lon))
+    .then(data => {
+      // Process the weather data and update the UI
+      updateCurrentWeather(data.current);
+      updateForecast(data.daily);
+      addCityToHistory(city);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 // Function to fetch coordinates for the given city, state code, and country code from the OpenWeatherMap Geocoding API
 function getCoordinates(city, stateCode = '', countryCode = '') {
@@ -100,9 +107,22 @@ function updateForecast(forecastData) {
 
 // Function to add the searched city to the search history
 function addCityToHistory(city) {
+  // Check if the city is already in the search history
+  if (searchedCities.includes(city)) {
+    return; // Skip adding duplicate cities
+  }
+
+  searchedCities.push(city); // Add the city to the searchedCities array
+
   const listItem = document.createElement('li');
   listItem.textContent = city;
   historyList.appendChild(listItem);
+
+  // Add event listener to the list item
+  listItem.addEventListener('click', function() {
+    // Trigger a search for the clicked city
+    searchCity(city);
+  });
 }
 
 // Function to get the current date in the required format
